@@ -1,3 +1,4 @@
+-- plugins/test.lua
 return {
 	{
 		"nvim-neotest/neotest",
@@ -6,13 +7,15 @@ return {
 			"nvim-neotest/neotest-jest",
 			"nvim-neotest/neotest-go",
 		},
-		opts = {
-			adapters = {
-				require("neotest-python"),
-				require("neotest-jest"),
-				require("neotest-go"),
-			},
-		},
+		config = function()
+			require("neotest").setup({
+				adapters = {
+					require("neotest-python"),
+					require("neotest-jest"),
+					require("neotest-go"),
+				},
+			})
+		end,
 		keys = {
 			{
 				"<leader>tt",
